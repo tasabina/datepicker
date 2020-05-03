@@ -9,7 +9,6 @@ const PATHS = {
     assets: 'assets/'
 }
 module.exports = {
-    watch: true,
     externals : { paths: PATHS },
     entry:{
         datepicker: PATHS.src
