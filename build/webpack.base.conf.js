@@ -19,7 +19,13 @@ module.exports = {
         publicPath:'/'
     },
     module:{
-        rules: [{
+        rules: [
+        {
+            test: /test\.js$/,
+            use: 'mocha-loader',
+            exclude: /node_modules/,
+        },
+        {
             test:/\.js$/,
             loader: 'babel-loader',
             exclude: '/node_modules/'
