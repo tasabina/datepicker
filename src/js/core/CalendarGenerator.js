@@ -16,7 +16,7 @@ export default class DPST {
         let newDate = new Date(y, m, 1, 0, 0, 0, 0);
         let currentDate = newDate.getDay() !== 0 ? newDate.getDay() * -1 + 2 : newDate.getDay() * -1 - 5;
 
-        for(let w = 0; w < 6; w++){
+        for(let w = 0; w < 5; w++){
             let week = [];
             for(let d = 0; d < 7; d++){
                 let day = new Date(y, m, counter + currentDate, 0, 0, 0, 0);
