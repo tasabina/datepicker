@@ -7,7 +7,8 @@ describe('CalendarGenerator', function() {
 
   describe('#generateMonthDateArray()', function() {
     it('should return array [0,0,0,0,0,1,2] when the function generate date for CalendarGenerator(1,2020)', function() {
-      assert.strictEqual(JSON.stringify(calgen.generateMonthDateArray(1,2020)[0]), "[0,0,0,0,0,1,2]");
+      assert.strictEqual(JSON.stringify(calgen.generateMonthDateArray(1,2020)[0]),
+                        '[{"month":0,"day":27,"inCurrentMonth":false,"enable":false},{"month":0,"day":28,"inCurrentMonth":false,"enable":false},{"month":0,"day":29,"inCurrentMonth":false,"enable":false},{"month":0,"day":30,"inCurrentMonth":false,"enable":false},{"month":0,"day":31,"inCurrentMonth":false,"enable":false},{"month":1,"day":1,"inCurrentMonth":true,"enable":false},{"month":1,"day":2,"inCurrentMonth":true,"enable":false}]');
     });
   });
 

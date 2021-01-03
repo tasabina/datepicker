@@ -28,54 +28,66 @@ export function generateWeeksArray(length=2){
     return weeks;   
 }
 
-export function toDay(day){
-    if(day === 0){
-        day = '';
+export function toDay(el){
+    let currMonthClass = '';
+    if(!el.inCurrentMonth){
+        currMonthClass = "dp-unactual";
     }
-    return `<div class="dp-day-cell">${day}</div>`;
+    return `<td class="dp-cell dp-day-block ${currMonthClass}" data-month="${el.month}" data-day="${el.day}">${el.day}</td>`;;
 }
 
 export function toWeek(days){
     const week = days.map(toDay).join('');
-    return `<div class="dp-week-row">${week}</div>`;
+    return `<tr class="dp-row">${week}</tr>`;
 }
 
 export function toTitleDays(){
     const title = generateWeeksArray().map(
         (element) => {
-            return `<div class="dp-title-cell">${element}</div>`;
+            return `<th class="dp-cell">${element}</th>`;
 
     }).join('');
-    return `<div class="dp-title-row">${title}</div>`;
+    return `<tr class="dp-row dp-daytitle">${title}</tr>`;
 }
 
-export function generateTheme(theme){
+export function generateTheme(theme, customClass){
     let mainClass = "dp-month-block";
-    switch(theme) {
-        case 'black':
-          return `class="${mainClass} black"`;
-        case 'red':
-          return `class="${mainClass} red"`;
-        default:
-          return `class="${mainClass} white"`;
-      }
+    mainClass += customClass ? " " + customClass : "";
+
+    if(theme){
+        switch(theme) {
+            case 'black':
+                return `class="${mainClass} black"`;
+            case 'red':
+                return `class="${mainClass} red"`;
+            default:
+                return `class="${mainClass} white"`;
+            }
+    }
 }
 
-export function toMonth(monthTitle, weeks, options={}){
+export function toMonth(monthTitle, year, weeks, options={}){
     const dayName = toTitleDays();
     const monthBlock = weeks.map(toWeek).join('');
     const theme = options.theme || null;
+    const customClass = options.class || null;
     var clss = '';
-    if(theme){
-        clss = generateTheme(theme);
+    if(theme || customClass){
+        clss = generateTheme(theme, customClass);
     }
-    return `<div ${clss}><div class="dp-month-title">${generateMonthName(monthTitle)}</div>${dayName}${monthBlock}</div>`;
+    return `<div ${clss}>
+                <div class="dp-month-title">${generateMonthName(monthTitle)} ${year}</div>
+                <div class="dp-days-block">
+                    <table>${dayName}${monthBlock}</table>
+                </div>
+            </div>`;
 }
 
-export function toBlock(month, firstBlock, secondBlock, options={}){
+export function toBlock(month, year, firstBlock, secondBlock, options={}){
     let secondMonthTitle = month === 11 ? 0 : month + 1;
-    const firstMonth = toMonth(month, firstBlock, options);
-    const secondMonth = toMonth(secondMonthTitle, secondBlock, options);
+    let currentYear = month === 11 ? year + 1 : year;
+    const firstMonth = toMonth(month, year, firstBlock, options);
+    const secondMonth = toMonth(secondMonthTitle, currentYear, secondBlock, options);
 
     return `<div class="dp-container">${firstMonth + secondMonth}</div>`;
 }

@@ -19,11 +19,12 @@ export default class CalendarBlock {
                             calendar.generateMonthDateArray(validMonth + 1, this.year);
             return toBlock(
                 validMonth,
+                this.year,
                 calendar.generateMonthDateArray(validMonth, this.year),
                 nextBlock,
                 this.options
                 );
         }
-        return toMonth(validMonth, calendar.generateMonthDateArray(validMonth, this.year), this.options); 
+        return toMonth(validMonth, this.year, calendar.generateMonthDateArray(validMonth, this.year), this.options); 
     }
 }

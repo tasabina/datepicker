@@ -18,20 +18,24 @@ export default class CalendarGenerator {
         let newDate = new Date(y, m, 1, 0, 0, 0, 0);
         let currentDate = newDate.getDay() !== 0 ? newDate.getDay() * -1 + 2 : newDate.getDay() * -1 - 5;
 
-        for(let w = 0; w < 5; w++){
+        for(let w = 0; w <= 5; w++){
             let week = [];
             for(let d = 0; d < 7; d++){
                 let day = new Date(y, m, counter + currentDate, 0, 0, 0, 0);
-                if(day.getMonth() == m){
-                    week.push(day.getDate());
-                } else {
-                    week.push(0);
-                }
+                let currentMonth = day.getMonth() == m ? true : false;
+
+                let dayOfMonth = {
+                    month: day.getMonth(),
+                    day : day.getDate(),
+                    inCurrentMonth : currentMonth,
+                    enable: new Date(y, m, day.getDate(), 0, 0, 0, 0) > new Date() ? true : false
+                };
+                week.push(dayOfMonth);
                 counter ++;
             }
+            console.log(months);
             months.push(week);
         }
-        console.log(months);
         return months;
     }
 

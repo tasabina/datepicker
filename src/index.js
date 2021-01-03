@@ -4,11 +4,13 @@ import './scss/main.scss';
 
 const dp = new CalendarBlock({
     day:1,
-    month: 1,
+    month: 11,
     year: 2020,
     options:{
         double: true,
-        theme: 'red',
+        theme: 'white',
+        showEnable: true,
+        class: 'custom'
     }
 });
 
