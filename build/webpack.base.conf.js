@@ -1,13 +1,13 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
     dist: path.join(__dirname, '../dist'),
-    assets: 'assets/'
-}
+    assets: 'assets/',
+};
 module.exports = {
     externals : { paths: PATHS },
     entry:{
@@ -91,4 +91,4 @@ module.exports = {
         ])
       ],
 
-}
+};

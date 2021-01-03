@@ -1,3 +1,52 @@
 html, body{
     margin: 0;
 }
+
+.month{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.week{
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 30px;
+}
+.day{
+    padding: 10px;
+    flex: 1 1 10px;
+    align-self: center;
+    border: 1px solid #d3d3d3;
+    margin: 1px;
+    border-radius: 5px;
+    line-height: 18px;
+    box-sizing: border-box;
+    height: 40px;
+    text-align: center;
+    font-size: 15px;
+}
+
+table,
+table.white {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+th, td,
+.white th, td {
+    padding: 10px;
+    border: 1px solid gray;
+    text-align: center;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+table.black {
+    background-color: black;
+    color: white;
+}
+
+.black th,
+.black td {
+    border: 1px solid black;
+}

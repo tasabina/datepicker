@@ -1,7 +1,15 @@
-import CalendarGenerator from './js/core/CalendarGenerator.js';
+import CalendarBlock from './js/core/CalendarBlock.js';
 import './css/main.css';
 import './scss/main.scss';
 
-const dp = new CalendarGenerator();
+const dp = new CalendarBlock({
+    day:1,
+    month: 1,
+    year: 2020,
+    options:{
+        double: true,
+        theme: 'red',
+    }
+});
 
-console.log(JSON.stringify(dp.generateMonthDateArray()));
+document.getElementById('app').innerHTML = dp.init();

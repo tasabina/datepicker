@@ -1,17 +1,19 @@
 /*	DPST.Class
 *   OOP facilities of the library.
 */
-export default class DPST {
+export default class CalendarGenerator {
 
-    constructor(month, year) {
+    constructor({day, month, year, options}) {
+        this.day = day || new Date().getDate();
         this.month = month || new Date().getMonth();
         this.year = year || new Date().getFullYear();
+        this.options = options;
     }
 
-    generateMonthDateArray(){
-        const y = this.year;
-        const m = this.month;
-        let month = [];
+    generateMonthDateArray(month, year){
+        const y = year || this.year;
+        const m = month || this.month;
+        let months = [];
         let counter = 0;
         let newDate = new Date(y, m, 1, 0, 0, 0, 0);
         let currentDate = newDate.getDay() !== 0 ? newDate.getDay() * -1 + 2 : newDate.getDay() * -1 - 5;
@@ -27,8 +29,20 @@ export default class DPST {
                 }
                 counter ++;
             }
-            month.push(week);
+            months.push(week);
         }
-        return month;
+        console.log(months);
+        return months;
+    }
+
+    generateYearArray(year){
+        let years = [];
+        let start = year-(year % 10);
+
+        for(let i=0; i<10; i++){
+            years.push(start);
+            start++;
+        }
+        return years;
     }
 }
